@@ -3,10 +3,10 @@
         <div class="mb-4">
             <small class="d-block text-secondary mb-2 text-uppercase">Posts</small>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{{ route('posts.create') }}" class="list-group-item list-group-item-action">
                     Create Post
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">All Posts</a>
+                <a href="{{ route('posts.index') }}" class="list-group-item list-group-item-action">All Posts</a>
             </div>
         </div>        
     @endcan

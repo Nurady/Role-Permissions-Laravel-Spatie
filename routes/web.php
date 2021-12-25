@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\Permissions\RoleController;
 use App\Http\Controllers\Permissions\UserController;
 use App\Http\Controllers\Permissions\AssignController;
@@ -40,6 +41,21 @@ Route::middleware('has.role')->group(function() {
             Route::get('{permission}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
             Route::put('{permission}/edit', [PermissionController::class, 'update']);
         });
+    });
+});
+
+Route::prefix('post')->group(function () {
+    Route::get('', [PostController::class, 'index'])->name('posts.index');    
+    Route::get('create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('create', [PostController::class, 'store']);
+
+    Route::group(['middleware' => ['permission:edit post']], function () {
+        Route::get('{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+        Route::put('{post}/edit', [PostController::class, 'update']);
+    });
+
+    Route::group(['middleware' => ['permission:delete post']], function () {
+        Route::get('{post}/delete', [PostController::class, 'delete'])->name('posts.delete');
     });
 });
 
