@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController as PeranController;
 use App\Http\Controllers\Permissions\RoleController;
 use App\Http\Controllers\Permissions\UserController;
 use App\Http\Controllers\Permissions\AssignController;
@@ -59,8 +60,10 @@ Route::prefix('post')->group(function () {
     });
 });
 
-Auth::routes();
+Route::get('role/create', [PeranController::class, 'create'])->name('role.create');
+Route::post('role/create', [PeranController::class, 'store']);
 
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // $role = Role::whereName('admin')->first();

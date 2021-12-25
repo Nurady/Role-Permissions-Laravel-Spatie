@@ -11,6 +11,14 @@
         </div>        
     @endcan
 
+    <div class="mb-4">
+        <div class="list-group">
+            <a href="{{ route('role.create') }}" class="list-group-item list-group-item-action">
+                Create Roles
+            </a>
+        </div>
+    </div> 
+
     @can('create category')
         <div class="mb-4">
             <small class="d-block text-secondary mb-2 text-uppercase">Categories</small>
