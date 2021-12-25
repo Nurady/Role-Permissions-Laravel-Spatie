@@ -38,7 +38,7 @@
                 <a href="#" class="list-group-item list-group-item-action">
                     Create User
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">All Users</a>
+                <a href="{{ route('pengguna.index') }}" class="list-group-item list-group-item-action">All Users</a>
             </div>
         </div>        
     @endcan

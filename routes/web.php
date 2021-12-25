@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController as PeranController;
+use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\Permissions\RoleController;
 use App\Http\Controllers\Permissions\UserController;
 use App\Http\Controllers\Permissions\AssignController;
 use App\Http\Controllers\Permissions\PermissionController;
+use App\Http\Controllers\RoleController as PeranController;
 
 Route::get('/', function () {
     return view('welcome');    
@@ -60,8 +61,16 @@ Route::prefix('post')->group(function () {
     });
 });
 
+// Create Role Checkbox
 Route::get('role/create', [PeranController::class, 'create'])->name('role.create');
 Route::post('role/create', [PeranController::class, 'store']);
+
+// Create User
+Route::get('user', [PenggunaController::class, 'index'])->name('pengguna.index');
+Route::get('user/create', [PenggunaController::class, 'create'])->name('pengguna.create');
+Route::post('user/create', [PenggunaController::class, 'store'])->name('pengguna.store');
+Route::get('user/{user}/edit', [PenggunaController::class, 'edit'])->name('pengguna.edit');
+Route::put('user/{user}/edit', [PenggunaController::class, 'update'])->name('pengguna.update');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
